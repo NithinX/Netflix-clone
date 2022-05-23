@@ -1,9 +1,12 @@
+import Navbar from './components/navbar/Navbar';
+import Banner from './components/banner/Banner';
 import './App.css';
 
 function App() {
   return (
     <div>
-      <h1>Hello</h1>      
+      <Navbar/>
+      <Banner/>
     </div>
   );
 }
