@@ -13,6 +13,8 @@ useEffect(()=>{
     let min =0;
     let rand = Math.floor(Math.random() * (max - min + 1)) + min;
     setMovie(response.data.results[rand]);
+  }).catch(err=>{
+    console.log(err)
   })
 },[])
 

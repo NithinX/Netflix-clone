@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./rowpost.css"
+import axios from "../constants/axios";
+import {imageUrl} from "../constants/constants";
 
-function Rowpost() {
+function Rowpost(props) {
+
+  const [movies, setMovies] = useState([])
+
+  useEffect(()=>{
+    axios.get(props.url).then((response)=>{
+      console.log(response.data.results);
+      setMovies(response.data.results)
+    }).catch(err=>{
+      console.log(err)
+    })
+  },[])
+
   return (
     <div className='row'>
-        <h2>Title</h2>
+        <h2>{props.title}</h2>
         <div className="posters">
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
-            <img className='poster' src="https://cdn.pastemagazine.com/www/system/images/photo_albums/best-movie-posters-2016/large/moonlight-ver2-xlg.jpg?1384968217" alt="poster" />
+          {movies.map((movie,index)=>
+            <img key={index} className={props.isLarge ? 'poster' : 'smallPoster'} src={`${imageUrl+movie.poster_path}`} alt={movie.name} />
+          )}
         </div>
     </div>
   )
