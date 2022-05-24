@@ -1,7 +1,7 @@
 import {API_KEY} from './constants'
 
 function rand(){
-let max =20
+let max =10
 let min =1;
 let num = Math.floor(Math.random() * (max - min + 1)) + min;
 return num
