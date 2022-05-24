@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./banner.css";
 import axios from "../constants/axios";
-import {API_KEY,imageUrl} from "../constants/constants";
+import {imageUrl} from "../constants/constants";
 
-function Banner() {
+function Banner(props) {
 
   const [movie,setMovie] = useState();
 
 useEffect(()=>{
-  axios.get(`trending/all/day?api_key=${API_KEY}&language=en-US`).then((response)=>{
+  axios.get(props.url).then((response)=>{
     let max =response.data.results.length - 1;
     let min =0;
     let rand = Math.floor(Math.random() * (max - min + 1)) + min;
