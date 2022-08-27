@@ -41,7 +41,12 @@ const handleVideo=(id)=>{
         <h2>{props.title}</h2>
         <div className="posters">
           {movies.map((movie,index)=>
-            <img onClick={()=>handleVideo(movie.id)} key={index} className={props.isLarge ? 'poster' : 'smallPoster'} src={`${imageUrl+movie.poster_path}`} alt={movie.name} />
+            <img onClick={()=>handleVideo(movie.id)}
+             key={index}
+             className={props.isLarge ? 'poster' : 'smallPoster'}
+             src={`${imageUrl+movie.poster_path}`}
+             alt={movie.name}
+             />
           )}
         </div>
         {ytvideo && <YouTube opts={opts} videoId={ytvideo.key}/>}
